@@ -1,0 +1,74 @@
+package prueba1;
+
+import com.progress.open4gl.javaproxy.*;
+import com.progress.open4gl.Parameter;
+
+public class sampleClient {
+
+	//private static final java.lang.String tName = new String( "KM_client" );
+	public static void nonPersistentProcedure() {
+	try {
+		// Connect to the AppServer
+		/*
+		Connection syntax is:
+		via NameServer:
+		[[AppServer:][//name-server-host][:name-server-port]/[service-name]]
+		DirectConnect:
+		[[AppServerDC:][//AppServer-host][:AppServer-port]
+		*/
+		//String appServerURL = "AppServer://rs:5163/asws";
+		String appServerURL = "AppServerDC://192.168.1.122:3090";
+		Connection myConn = new Connection(appServerURL,"","","");
+		
+		//change the operating mode to session free
+		myConn.setSessionModel(1);
+		OpenAppObject dynAO = new OpenAppObject(myConn, "asbroker1");
+		
+		// Create the parameters
+		/*
+		 * Integer iCustNum = new Integer(9);
+		 * String cCustomerName;
+		 */
+		//String pIntItemNum = "Hola";
+		String pChrName;
+		
+		
+		
+		// Create a place for RETURN-VALUE
+		String retVal;
+		
+		// Create the ParamArray
+		ParamArray parms = new ParamArray(0);
+		
+		// Set up input parameters
+		//parms.addCharacter(0, pIntItemNum, ParamArrayMode.INPUT);
+		
+		// Set up Out parameters - notice the value is null
+		parms.addCharacter(0, null, ParamArrayMode.OUTPUT);
+		
+		// Run the procedure
+		dynAO.runProc("main.p", parms);
+		
+		// Get output parameters - Returned as Object, so must cast
+		pChrName = (String) parms.getOutputParameter(1);
+		
+		// Get RETURN-VALUE - Will return null for getCustomerName() procedure
+		retVal = (String)(parms.getProcReturnString());
+		dynAO._release();
+			System.out.println("Customer Name = " + pChrName);
+			System.out.println("RETURN VALUE = " + retVal);
+	} // try to catch all unexpected exceptions
+		catch ( Exception e ) {
+			System.out.println("Exception in sample()");
+			System.out.println("Exception Message: " + e.getMessage());
+			e.printStackTrace();
+		}
+	} //nonPersistentProcedure
+
+	public static void main(String[] args) {
+
+	sampleClient a = new sampleClient();
+		a.nonPersistentProcedure();
+
+	} //main
+}

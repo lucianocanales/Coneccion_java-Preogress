@@ -1,0 +1,14 @@
+package op;
+ import com.progress.open4gl.javaproxy.Connection;
+
+public class lanzador {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		Connection con =new Connection("AppServer://192.168.1.122:3090/","","","");
+		System.out.println(con);
+	}
+
+}

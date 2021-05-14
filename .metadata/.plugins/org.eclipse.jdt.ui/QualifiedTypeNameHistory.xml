@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="com.progress.open4gl.javaproxy.AppObject"/>
+    <fullyQualifiedTypeName name="com.progress.open4gl.javaproxy.OpenAppObject"/>
+    <fullyQualifiedTypeName name="com.progress.open4gl.javaproxy.ParamArray"/>
+</qualifiedTypeNameHistroy>

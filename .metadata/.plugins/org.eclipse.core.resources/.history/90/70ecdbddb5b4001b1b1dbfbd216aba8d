@@ -1,0 +1,12 @@
+package op;
+ import com.progress.open4gl.javaproxy.Connection;
+
+public class lanzador {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Connection con =new Connection();
+		coneccion app = new coneccion(con);
+	}
+
+}
